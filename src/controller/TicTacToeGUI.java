@@ -100,7 +100,7 @@ public class TicTacToeGUI extends JFrame {
     currentView = newView;
     add(currentView);
     currentView.repaint();
-    validate();
+   validate();
   }
 
   private class MenuItemListener implements ActionListener {
