@@ -1,4 +1,4 @@
-
+//Author:Qiming Wan
 public class TemperatureConverter {
 
    public static double CtoF(double tem){

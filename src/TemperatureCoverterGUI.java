@@ -1,3 +1,4 @@
+//Author:Qiming Wan
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,7 +58,7 @@ public class TemperatureCoverterGUI  extends JFrame {
 		    panel.add(aLabel2);
 		    panel.add(textEditor2);
 			  
-		   add(panel);
+		   add(panel); //add to Jframe
 		  
 	  }
 	  private class ButtonListener implements ActionListener{
