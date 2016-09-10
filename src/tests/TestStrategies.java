@@ -4,13 +4,13 @@ import static org.junit.Assert.*;
 
 import java.awt.Point;
 
+import org.junit.Test;
+
 import model.ComputerPlayer;
 import model.RandomAI;
 import model.StopperAI;
 import model.TicTacToeGame;
 import model.IGotNowhereToGoException;
-
-import org.junit.Test;
 
 public class TestStrategies {
 
@@ -94,7 +94,7 @@ public class TestStrategies {
     System.out.println("Random wins: " + randomPlayerWins);
     System.out.println("Ties: " + ties);
   }
-
+  
   private char playOneGame(ComputerPlayer first, ComputerPlayer second) {
     TicTacToeGame theGame = new TicTacToeGame();
 
