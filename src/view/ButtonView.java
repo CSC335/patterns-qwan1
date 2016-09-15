@@ -35,8 +35,22 @@ public class ButtonView extends JPanel implements OurObserver {
     if (theGame.maxMovesRemaining() == theGame.size() * theGame.size())
       resetButtons(true);
 
-    if (!theGame.stillRunning())
+    if (!theGame.stillRunning()) {
       resetButtons(false);
+     
+      if (theGame.tied()) {
+          stateButton.setText("Tied");
+          updateButtons();
+        }
+        else if (theGame.didWin('X')) {
+          stateButton.setText("X wins");
+          updateButtons();
+        }
+        else {       
+            stateButton.setText("O wins");
+            updateButtons();
+          }
+    }
     else {
       updateButtons();
       stateButton.setText("Click your move");

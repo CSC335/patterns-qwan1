@@ -13,6 +13,7 @@ import model.RandomAI;
 import model.StopperAI;
 import model.TicTacToeGame;
 import view.ButtonView;
+import view.TextView;
 
 /**
  * Play TicTacToe the computer that can have different AIs to beat you.  Select the Options menus to begin
@@ -41,6 +42,7 @@ public class TicTacToeGUI extends JFrame {
 
   private TicTacToeGame theGame;
   private ButtonView buttonView;
+  private TextView textView;
   private JPanel currentView;
   public static final int width = 300;
   public static final int height = 360;
@@ -54,13 +56,16 @@ public class TicTacToeGUI extends JFrame {
     setupMenus();
     initializeGameForTheFirstTime();
     buttonView = new ButtonView(theGame, width, height);
+    textView = new TextView(theGame,width,height);
     addObservers();
     // Set default view
-    setViewTo(buttonView);
+    setViewTo(buttonView);   //////////////
+    
   }
 
   private void addObservers() {
     theGame.addObserver(buttonView);
+    theGame.addObserver(textView);
   }
 
   public void initializeGameForTheFirstTime() {
@@ -75,23 +80,34 @@ public class TicTacToeGUI extends JFrame {
     JMenuItem newGame = new JMenuItem("New Game");
     menu.add(newGame);
     // Add two Composites to a Composite
-    JMenuItem jmi2Nest = new JMenu("Stategies");
+    JMenuItem jmi2Nest = new JMenu("Strategies");
     menu.add(jmi2Nest);
     JMenuItem beginner = new JMenuItem("RandomAI");
     jmi2Nest.add(beginner);
     JMenuItem intermediate = new JMenuItem("Stopper");
     jmi2Nest.add(intermediate);
+    
+    JMenuItem views= new JMenu("Views");
+    JMenuItem JButton=new JMenuItem("JButton");
+    JMenuItem JTextField=new JMenuItem("JTextField");
+    views.add(JTextField);
+    views.add(JButton);
+    menu.add(views);
+
 
     // Set the menu bar
     JMenuBar menuBar = new JMenuBar();
     setJMenuBar(menuBar);
     menuBar.add(menu);
 
-    // Add the same listener to all menu items requiring action
+    // Add the same listener to all menu items requiring action'
+    
     MenuItemListener menuListener = new MenuItemListener();
     newGame.addActionListener(menuListener);
     beginner.addActionListener(menuListener);
     intermediate.addActionListener(menuListener);
+    JTextField.addActionListener(menuListener);
+    JButton.addActionListener(menuListener);
   }
 
   private void setViewTo(JPanel newView) {
@@ -110,9 +126,10 @@ public class TicTacToeGUI extends JFrame {
       // Find out the text of the JMenuItem that was just clicked
       String text = ((JMenuItem) e.getSource()).getText();
 
-      if (text.equals("Button"))
-        setViewTo(buttonView);
-
+      if (text.equals("JButton"))
+         setViewTo(buttonView);
+      if (text.equals("JTextField"))
+    	  setViewTo(textView);
       if (text.equals("New Game")) {
         theGame.startNewGame(); // The computer player has been set and should not change.
       }
@@ -124,6 +141,7 @@ public class TicTacToeGUI extends JFrame {
       if (text.equals("Random")) {
         theGame.setComputerPlayerStrategy(new RandomAI());
       }
+      
     }
   }
 }
